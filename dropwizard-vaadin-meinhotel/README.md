@@ -9,4 +9,5 @@ Sourcen zu Sascha Aldas Tutorial zur Entwicklung eines Web-basierten Buchungspor
 or
 * run VaadinApplication from Eclipse
 
-open [http://localhost:8080/vaadin](http://localhost:8080/vaadin) in your browser
+* open [http://localhost:8080/vaadin](http://localhost:8080/vaadin) in your browser
+
