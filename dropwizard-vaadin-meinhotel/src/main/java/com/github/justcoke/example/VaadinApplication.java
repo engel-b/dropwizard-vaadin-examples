@@ -1,6 +1,6 @@
 package com.github.justcoke.example;
 
-import org.bonn.se.meinhotelapp.ui.MyUI;
+import org.bonn.se.gui.ui.MyUI;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinServlet;
