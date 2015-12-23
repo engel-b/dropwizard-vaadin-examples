@@ -1,4 +1,4 @@
-package io.dropwizard;
+package com.github.justcoke.example;
 
 import static org.slf4j.LoggerFactory.getLogger;
 

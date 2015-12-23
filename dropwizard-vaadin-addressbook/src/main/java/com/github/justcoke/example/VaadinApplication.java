@@ -1,9 +1,10 @@
-package io.dropwizard;
+package com.github.justcoke.example;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.tutorial.addressbook.AddressbookUI;
 
+import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -19,6 +20,9 @@ public class VaadinApplication extends Application<VaadinApplication.Configurati
 	}
 
 	public static void main(String... args) throws Exception {
+		if (args.length == 0) {
+			args = new String[] { "server" };
+		}
 		new VaadinApplication().run(args);
 	}
 

@@ -22,7 +22,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 
 		<!-- default start class -->
-		<mainClass>io.dropwizard.VaadinApplication</mainClass>
+		<mainClass>com.github.justcoke.example.VaadinApplication</mainClass>
 	</properties>
 
 	<dependencyManagement>
