@@ -21,7 +21,7 @@ public class VaadinApplication extends Application<VaadinApplication.Configurati
 	}
 
 	public static void main(String... args) throws Exception {
-		if (args == null) {
+		if (args.length == 0) {
 			args = new String[] { "server" };
 		}
 		new VaadinApplication().run(args);
