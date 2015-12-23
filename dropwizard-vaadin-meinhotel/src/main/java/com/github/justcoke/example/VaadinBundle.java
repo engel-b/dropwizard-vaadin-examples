@@ -1,4 +1,4 @@
-package io.dropwizard;
+package com.github.justcoke.example;
 
 import java.util.Map;
 
