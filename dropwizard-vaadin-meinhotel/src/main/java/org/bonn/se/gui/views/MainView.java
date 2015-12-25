@@ -4,7 +4,9 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import org.bonn.se.model.objects.dto.Hotel;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
+import org.bonn.se.services.util.Roles;
 
 import com.vaadin.data.util.BeanContainer;
 import com.vaadin.data.util.BeanItem;
@@ -23,6 +25,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 public class MainView extends VerticalLayout implements View {
@@ -40,7 +43,10 @@ public class MainView extends VerticalLayout implements View {
 		Button button = new Button("Suche", FontAwesome.SEARCH);
 		Button bucheButton = new Button("Buchen");
 		TextField textField = new TextField();
-		Label label = new Label("Geben Sie einen Ort ein: ");
+
+		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+
+		Label label = new Label("Hallo " + user.getVorname() + ", gib einen Ort ein: ");
 
 		horizintallayout.addComponent(label);
 		horizintallayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);

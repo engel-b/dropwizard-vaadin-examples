@@ -1,0 +1,42 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="1" author="justcoke">
+		<createTable tableName="user">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="login" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="passwort" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="vorname" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="nachname" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="2" author="justcoke">
+		<insert tableName="user">
+			<column name="id" valueNumeric="1" />
+			<column name="login" value="admin" />
+			<column name="passwort" value="admin" />
+			<column name="vorname" value="Admin" />
+			<column name="nachname" value="Istrator" />
+		</insert>
+		<insert tableName="user">
+			<column name="id" valueNumeric="2" />
+			<column name="login" value="gast" />
+			<column name="passwort" value="gast" />
+			<column name="vorname" value="Günther" />
+			<column name="nachname" value="Gast" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>
