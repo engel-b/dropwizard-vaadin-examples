@@ -6,6 +6,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinServlet;
 
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -30,6 +31,9 @@ public class VaadinApplication extends Application<VaadinApplication.Configurati
 	@Override
 	public void initialize(Bootstrap<Configuration> bootstrap) {
 		bootstrap.addBundle(new VaadinBundle(Servlet.class, "/vaadin/*"));
+
+		// set up folders for static content
+		bootstrap.addBundle(new AssetsBundle("/VAADIN", "/VAADIN", null));
 	}
 
 	@Override

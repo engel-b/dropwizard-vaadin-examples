@@ -14,7 +14,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 
-@Theme("valo")
+@Theme("mytheme")
 @Title("MeinHotel")
 @SuppressWarnings("serial")
 public class MyUI extends UI {
