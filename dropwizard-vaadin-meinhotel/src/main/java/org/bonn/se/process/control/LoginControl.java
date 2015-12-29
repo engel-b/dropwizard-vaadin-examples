@@ -44,5 +44,8 @@ public class LoginControl {
 		VaadinSession session = UI.getCurrent().getSession();
 		session.setAttribute(Roles.CURRENT_USER, user);
 		UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+
+		// Fehlerfall
+		throw new NoSuchUserOrPasswortException();
 	}
 }
