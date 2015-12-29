@@ -1,7 +1,11 @@
 package org.bonn.se.gui.views;
 
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
+import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPasswortException;
+import org.bonn.se.services.util.Roles;
+import org.bonn.se.services.util.Views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -16,13 +20,20 @@ import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 public class LoginView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		setUp();
+		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+
+		if (user != null) {
+			UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+		} else {
+			setUp();
+		}
 	}
 
 	public void setUp() {
@@ -30,7 +41,7 @@ public class LoginView extends VerticalLayout implements View {
 
 		TextField userlogin = new TextField("UserID:");
 		PasswordField passwortField = new PasswordField("Passwort:");
-		Button loginButton = new Button("Login", FontAwesome.LINUX);
+		Button loginButton = new Button("Login", FontAwesome.KEY);
 
 		loginButton.addClickListener(new ClickListener() {
 
@@ -39,9 +50,11 @@ public class LoginView extends VerticalLayout implements View {
 				try {
 					LoginControl.checkAuthentication(userlogin.getValue(), passwortField.getValue());
 				} catch (NoSuchUserOrPasswortException e) {
-					Notification.show("Fehler", "Benutzername oder Passwort falsch", Type.ERROR_MESSAGE);
+					Notification.show("Benutzerfehler", "Benutzername oder Passwort falsch", Type.ERROR_MESSAGE);
 					userlogin.setValue("");
 					passwortField.setValue("");
+				} catch (DatabaseException e) {
+					Notification.show("Datenbankfehler", e.getReason(), Type.ERROR_MESSAGE);
 				}
 			}
 		});

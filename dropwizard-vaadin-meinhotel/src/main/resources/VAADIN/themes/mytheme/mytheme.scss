@@ -29,7 +29,7 @@
 
 $v-app-loading-text: "Facebook Valo";
 $v-background-color: #fafafa;
-$v-app-background-color: #e7ebf2;
+$v-app-background-color: #fafafa;
 $v-panel-background-color: #fff;
 $v-focus-color: #3b5998;
 $v-focus-style: 0 0 1px 1px rgba($v-focus-color, .5);
@@ -56,6 +56,20 @@ $v-selection-item-border-radius: 0;
 	padding: 10px;
 	font-family: Verdana;
 	color: white;
+}
+
+.mytitle {
+	font-family: Verdana;
+	color: #D44E7D;
+	padding: 10px;
+	font-size: 24px;
+}
+
+.loggedLabel {
+	font-family: Verdana;
+	color: #D44E7D;
+	padding: 10px;
+	font-size: 12px;
 }
 
 @import "../valo/valo";

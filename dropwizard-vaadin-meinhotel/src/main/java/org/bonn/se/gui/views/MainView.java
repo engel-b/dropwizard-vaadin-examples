@@ -3,10 +3,12 @@ package org.bonn.se.gui.views;
 import java.text.MessageFormat;
 import java.util.List;
 
+import org.bonn.se.gui.component.TopPanel;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
 import org.bonn.se.services.util.Roles;
+import org.bonn.se.services.util.Views;
 
 import com.vaadin.data.util.BeanContainer;
 import com.vaadin.data.util.BeanItem;
@@ -15,6 +17,7 @@ import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -35,10 +38,20 @@ public class MainView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		setUp();
+		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+
+		if (user == null) {
+			UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+		} else {
+			setUp();
+		}
 	}
 
 	public void setUp() {
+		addComponent(new TopPanel());
+		addComponent(new Label("<hr/>", ContentMode.HTML));
+		setMargin(true);
+
 		final HorizontalLayout horizintallayout = new HorizontalLayout();
 		Button button = new Button("Suche", FontAwesome.SEARCH);
 		Button bucheButton = new Button("Buchen");

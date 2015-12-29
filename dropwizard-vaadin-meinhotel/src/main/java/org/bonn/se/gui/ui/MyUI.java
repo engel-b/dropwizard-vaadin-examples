@@ -12,6 +12,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 @Theme("mytheme")
@@ -26,6 +27,8 @@ public class MyUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
+		System.out.println("Neues UI-Object erzeugt. Session-ID: " + VaadinSession.getCurrent().toString());
+
 		Navigator navi = new Navigator(this, this);
 		navi.addView(Views.MAIN, MainView.class);
 		navi.addView(Views.LOGIN, LoginView.class);
