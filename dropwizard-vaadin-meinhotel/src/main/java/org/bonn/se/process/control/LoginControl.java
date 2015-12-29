@@ -51,6 +51,5 @@ public class LoginControl {
 	public static void logoutUser() {
 		UI.getCurrent().getPage().setLocation("/vaadin");
 		UI.getCurrent().getSession().close();
-
 	}
 }
