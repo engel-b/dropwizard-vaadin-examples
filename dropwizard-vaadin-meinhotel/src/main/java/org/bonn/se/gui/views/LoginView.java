@@ -1,10 +1,10 @@
 package org.bonn.se.gui.views;
 
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPasswortException;
-import org.bonn.se.services.util.Roles;
 import org.bonn.se.services.util.Views;
 
 import com.vaadin.navigator.View;
@@ -27,7 +27,7 @@ public class LoginView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+		User user = ((MyUI) UI.getCurrent()).getUser();
 
 		if (user != null) {
 			UI.getCurrent().getNavigator().navigateTo(Views.MAIN);

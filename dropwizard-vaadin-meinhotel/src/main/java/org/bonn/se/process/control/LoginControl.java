@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPasswortException;
 import org.bonn.se.services.db.JDBCConnection;
-import org.bonn.se.services.util.Roles;
 import org.bonn.se.services.util.Views;
 
 import com.vaadin.server.VaadinSession;
@@ -44,12 +44,12 @@ public class LoginControl {
 		}
 		// wenn alles ok
 		VaadinSession session = UI.getCurrent().getSession();
-		session.setAttribute(Roles.CURRENT_USER, user);
+		((MyUI) UI.getCurrent()).setUser(user);
 		UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 	}
 
 	public static void logoutUser() {
+		UI.getCurrent().close();
 		UI.getCurrent().getPage().setLocation("/vaadin");
-		UI.getCurrent().getSession().close();
 	}
 }

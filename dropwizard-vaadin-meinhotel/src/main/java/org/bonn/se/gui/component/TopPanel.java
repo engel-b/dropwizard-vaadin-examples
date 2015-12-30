@@ -1,8 +1,8 @@
 package org.bonn.se.gui.component;
 
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
-import org.bonn.se.services.util.Roles;
 
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.label.ContentMode;
@@ -26,7 +26,7 @@ public class TopPanel extends HorizontalLayout {
 
 		HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+		User user = ((MyUI) UI.getCurrent()).getUser();
 
 		Label loggedLabel = new Label("Welcome " + user.getVorname() + "!");
 		loggedLabel.setSizeUndefined();
