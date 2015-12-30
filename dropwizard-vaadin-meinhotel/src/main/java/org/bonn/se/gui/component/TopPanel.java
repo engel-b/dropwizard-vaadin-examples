@@ -1,5 +1,6 @@
 package org.bonn.se.gui.component;
 
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.services.util.Roles;
@@ -26,7 +27,7 @@ public class TopPanel extends HorizontalLayout {
 
 		HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+		User user = ((MyUI) UI.getCurrent()).getUser();
 
 		Label loggedLabel = new Label("Welcome " + user.getVorname() + "!");
 		loggedLabel.setSizeUndefined();
@@ -48,7 +49,15 @@ public class TopPanel extends HorizontalLayout {
 		});
 
 		// Stornierung von Reisen
-		item1.addItem("Cancel", FontAwesome.UNLINK, null);
+		if (user.hasRole(Roles.POWERUSER)) {
+			item1.addItem("Cancel", FontAwesome.UNLINK, new Command() {
+
+				@Override
+				public void menuSelected(MenuItem selectedItem) {
+
+				}
+			});
+		}
 
 		horizontalLayout.addComponent(menuBar);
 		addComponent(horizontalLayout);

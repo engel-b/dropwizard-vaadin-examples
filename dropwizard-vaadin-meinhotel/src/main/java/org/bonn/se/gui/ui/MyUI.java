@@ -4,8 +4,10 @@ import javax.servlet.annotation.WebServlet;
 
 import org.bonn.se.gui.views.LoginView;
 import org.bonn.se.gui.views.MainView;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.services.util.Views;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -18,11 +20,22 @@ import com.vaadin.ui.UI;
 @Theme("mytheme")
 @Title("MeinHotel")
 @SuppressWarnings("serial")
+@PreserveOnRefresh
 public class MyUI extends UI {
 
 	@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
 	public static class Servlet extends VaadinServlet {
+	}
+
+	User user = null;
+
+	public MyUI getMyUI() {
+		return (MyUI) UI.getCurrent();
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 	@Override
@@ -36,4 +49,7 @@ public class MyUI extends UI {
 		UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

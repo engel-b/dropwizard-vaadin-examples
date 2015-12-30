@@ -39,4 +39,76 @@
 			<column name="nachname" value="Gast" />
 		</insert>
 	</changeSet>
+
+	<changeSet id="3" author="justcoke">
+		<createTable tableName="rolle">
+			<column name="bezeichnung" type="varchar(255)">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="4" author="justcoke">
+		<insert tableName="rolle">
+			<column name="bezeichnung" value="user" />
+		</insert>
+		<insert tableName="rolle">
+			<column name="bezeichnung" value="poweruser" />
+		</insert>
+		<insert tableName="rolle">
+			<column name="bezeichnung" value="admin" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="5" author="justcoke">
+		<createTable tableName="user_to_rolle">
+			<column name="login" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="rolle" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey constraintName="pk_user_to_rolle"
+			tableName="user_to_rolle" columnNames="login,rolle" />
+		<addForeignKeyConstraint constraintName="fk_user_to_rolle_user"
+			baseTableName="user_to_rolle" baseColumnNames="login"
+			referencedTableName="user" referencedColumnNames="login" />
+		<addForeignKeyConstraint constraintName="fk_user_to_rolle_rolle"
+			baseTableName="user_to_rolle" baseColumnNames="rolle"
+			referencedTableName="rolle" referencedColumnNames="bezeichnung" />
+	</changeSet>
+
+	<changeSet id="6" author="justcoke">
+		<insert tableName="user">
+			<column name="id" valueNumeric="3" />
+			<column name="login" value="poweruser" />
+			<column name="passwort" value="poweruser" />
+			<column name="vorname" value="Power" />
+			<column name="nachname" value="User" />
+		</insert>
+		<insert tableName="user">
+			<column name="id" valueNumeric="4" />
+			<column name="login" value="user" />
+			<column name="passwort" value="user" />
+			<column name="vorname" value="User" />
+			<column name="nachname" value="User" />
+		</insert>
+		<insert tableName="user_to_rolle">
+			<column name="login" value="admin" />
+			<column name="rolle" value="admin" />
+		</insert>
+		<insert tableName="user_to_rolle">
+			<column name="login" value="poweruser" />
+			<column name="rolle" value="poweruser" />
+		</insert>
+		<insert tableName="user_to_rolle">
+			<column name="login" value="poweruser" />
+			<column name="rolle" value="user" />
+		</insert>
+		<insert tableName="user_to_rolle">
+			<column name="login" value="user" />
+			<column name="rolle" value="user" />
+		</insert>
+	</changeSet>
 </databaseChangeLog>

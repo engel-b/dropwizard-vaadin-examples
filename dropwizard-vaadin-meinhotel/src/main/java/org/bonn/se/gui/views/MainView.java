@@ -4,10 +4,10 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import org.bonn.se.gui.component.TopPanel;
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
-import org.bonn.se.services.util.Roles;
 import org.bonn.se.services.util.Views;
 
 import com.vaadin.data.util.BeanContainer;
@@ -38,7 +38,7 @@ public class MainView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+		User user = ((MyUI) UI.getCurrent()).getUser();
 
 		if (user == null) {
 			UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
@@ -57,7 +57,7 @@ public class MainView extends VerticalLayout implements View {
 		Button bucheButton = new Button("Buchen");
 		TextField textField = new TextField();
 
-		User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+		User user = ((MyUI) UI.getCurrent()).getUser();
 
 		Label label = new Label("Hallo " + user.getVorname() + ", gib einen Ort ein: ");
 
