@@ -111,4 +111,62 @@
 			<column name="rolle" value="user" />
 		</insert>
 	</changeSet>
+
+	<changeSet id="7" author="justcoke">
+		<createTable tableName="hotel">
+			<column name="id" type="int">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+			<column name="ort" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+			<column name="description" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="8" author="justcoke">
+		<insert tableName="hotel">
+			<column name="id" valueNumeric="1" />
+			<column name="name" value="Hotel 1" />
+			<column name="ort" value="Bonn" />
+			<column name="description" value="Sehr schönes Hotel" />
+		</insert>
+		<insert tableName="hotel">
+			<column name="id" valueNumeric="2" />
+			<column name="name" value="Hotel 2" />
+			<column name="ort" value="Bonn" />
+			<column name="description" value="Sehr schönes Hotel" />
+		</insert>
+		<insert tableName="hotel">
+			<column name="id" valueNumeric="3" />
+			<column name="name" value="Hotel 3" />
+			<column name="ort" value="Köln" />
+			<column name="description" value="Sehr schönes Hotel" />
+		</insert>
+		<insert tableName="hotel">
+			<column name="id" valueNumeric="4" />
+			<column name="name" value="Hotel 4" />
+			<column name="ort" value="Bonn" />
+			<column name="description" value="Sehr schönes Hotel" />
+		</insert>
+	</changeSet>
+	<changeSet id="9" author="justcoke">
+		<createTable tableName="booking">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="anreise" type="DATE" />
+			<column name="abreise" type="DATE" />
+			<column name="iban" type="VARCHAR(255)" />
+			<column name="anzahl" type="INT" />
+			<column name="userId" type="VARCHAR(255)" />
+			<column name="datumBuchung" type="DATE" />
+			<column name="hotelId" type="INT" />
+		</createTable>
+	</changeSet>
 </databaseChangeLog>

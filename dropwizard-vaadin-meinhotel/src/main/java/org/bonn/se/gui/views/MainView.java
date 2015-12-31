@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bonn.se.gui.component.TopPanel;
 import org.bonn.se.gui.ui.MyUI;
+import org.bonn.se.gui.windows.BookingWindow;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
@@ -117,7 +118,9 @@ public class MainView extends VerticalLayout implements View {
 				if (hotelSelektiert == null) {
 					return;
 				}
-				// öffne Fenster zur Buchung
+
+				BookingWindow window = new BookingWindow(hotelSelektiert);
+				UI.getCurrent().addWindow(window);
 			}
 		});
 
