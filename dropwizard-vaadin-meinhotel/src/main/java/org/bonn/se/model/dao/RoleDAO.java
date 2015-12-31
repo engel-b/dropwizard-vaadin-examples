@@ -8,10 +8,8 @@ import java.util.List;
 
 import org.bonn.se.model.objects.dto.Role;
 import org.bonn.se.model.objects.dto.User;
-import org.bonn.se.process.control.exceptions.DatabaseException;
-import org.bonn.se.services.db.JDBCConnection;
 
-public class RoleDAO {
+public class RoleDAO extends AbstractDAO<Role> {
 	private static RoleDAO dao = null;
 
 	public static RoleDAO getInstance() {
@@ -25,14 +23,7 @@ public class RoleDAO {
 	}
 
 	public List<Role> getRolesForUser(User user) {
-		Statement statement = null;
-
-		try {
-			statement = JDBCConnection.getInstance().getStatement();
-		} catch (DatabaseException e) {
-			e.printStackTrace();
-			return null;
-		}
+		Statement statement = getStatement();
 		ResultSet resultSet = null;
 
 		try {

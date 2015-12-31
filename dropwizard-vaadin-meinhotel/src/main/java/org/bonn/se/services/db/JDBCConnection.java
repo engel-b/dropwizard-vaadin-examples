@@ -2,6 +2,7 @@ package org.bonn.se.services.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -31,6 +32,18 @@ public class JDBCConnection {
 			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public PreparedStatement getPreparedStatement(String sql) throws DatabaseException {
+		try {
+			if (connection.isClosed()) {
+				openConnection();
+			}
+			return connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 
