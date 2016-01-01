@@ -128,7 +128,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-
+ 
 	<changeSet id="8" author="justcoke">
 		<insert tableName="hotel">
 			<column name="id" valueNumeric="1" />
