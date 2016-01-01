@@ -1,6 +1,7 @@
 package org.bonn.se.gui.component;
 
 import org.bonn.se.gui.ui.MyUI;
+import org.bonn.se.gui.windows.ListBookingWindow;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.services.util.Roles;
@@ -54,7 +55,8 @@ public class TopPanel extends HorizontalLayout {
 
 				@Override
 				public void menuSelected(MenuItem selectedItem) {
-
+					ListBookingWindow window = new ListBookingWindow();
+					UI.getCurrent().addWindow(window);
 				}
 			});
 		}

@@ -1,9 +1,12 @@
 package org.bonn.se.process.control;
 
+import java.util.List;
+
 import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.gui.windows.ConfirmationWindow;
 import org.bonn.se.model.dao.BuchungDAO;
 import org.bonn.se.model.factories.BookingFactory;
+import org.bonn.se.model.objects.dto.BookingDetail;
 import org.bonn.se.model.objects.dto.BookingRequest;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.model.objects.entities.Booking;
@@ -36,5 +39,10 @@ public class BookingProcess {
 	public void deleteBookingById(int id) {
 		BuchungDAO.getInstance().deleteBookingBy(id);
 		UI.getCurrent().addWindow(new ConfirmationWindow("Die Reise wurde storniert."));
+	}
+
+	public List<BookingDetail> getAllBookingsForUsers() {
+		User user = ((MyUI) UI.getCurrent()).getUser();
+		return BuchungDAO.getInstance().getAllBookingsForUser(user);
 	}
 }
